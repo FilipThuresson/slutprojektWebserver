@@ -2110,7 +2110,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _sliderImages__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./sliderImages */ "./resources/js/components/sliderImages.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -2125,20 +2126,54 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
+
 function ImageSlider() {
-  var imgPath = 'img/slider/';
+  var imageSliderDiv = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
 
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1),
       _useState2 = _slicedToArray(_useState, 2),
       current = _useState2[0],
       setCurrent = _useState2[1];
 
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-    className: "image-slider",
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
-      className: "image-slider-img",
-      src: imgPath + current + '.jpg'
-    })
+  setInterval(function () {
+    nextImage();
+  }, 5000);
+
+  var nextImage = function nextImage() {
+    if (current >= _sliderImages__WEBPACK_IMPORTED_MODULE_1__["default"].length) {
+      setCurrent(1);
+      imageSliderDiv.current.style.left = "0%";
+    } else {
+      setCurrent(current + 1);
+      imageSliderDiv.current.style.left = current * -100 + "%";
+    }
+  };
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+    className: "image-slider-wrapper",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+      ref: imageSliderDiv,
+      className: "image-slider",
+      style: {
+        left: 0
+      },
+      children: _sliderImages__WEBPACK_IMPORTED_MODULE_1__["default"].map(function (img) {
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
+          className: "image-slider-img",
+          src: img.url
+        }, img.id);
+      })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+      id: "image-indicator",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+        type: "radio",
+        disabled: true
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+        type: "radio",
+        disabled: true
+      })]
+    })]
   });
 }
 
@@ -2213,6 +2248,27 @@ function Nav() {
     })]
   });
 }
+
+/***/ }),
+
+/***/ "./resources/js/components/sliderImages.js":
+/*!*************************************************!*\
+  !*** ./resources/js/components/sliderImages.js ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ([{
+  'id': 0,
+  'url': '/img/slider/1.jpg'
+}, {
+  'id': 1,
+  'url': '/img/slider/2.jpg'
+}]);
 
 /***/ }),
 
