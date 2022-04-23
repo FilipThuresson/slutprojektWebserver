@@ -4,9 +4,9 @@ export default function Nav() {
     return (
 
         <div className='nav-bar'>
-            <h2>Sunnanå Bastu</h2>
+            <a href='/'><h2>Sunnanå Bastu</h2></a>
             <ul>
-                <li>Test</li>
+                <a href='/bookings'><li>Boka Tider</li></a>
                 <li>Test</li>
                 <li>Test</li>
             </ul>
