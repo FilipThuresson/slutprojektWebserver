@@ -72,3 +72,8 @@ body{
 a{
     color: var(--p-color);
 }
+
+
+.fc-day-grid-event {
+    pointer-events: none;
+  }
