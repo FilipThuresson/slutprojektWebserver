@@ -12,41 +12,25 @@ export default function Calendar(){
 
     const [events, setEvents] = useState([]);
     const [pVisable, setpVisable] = useState(false);
+    const [eventData, setEventData] = useState();
+
 
 
     useEffect(()=>{
         //hämtar alla data vid första inladdning av sidan
-        //fetch('/api/getEvents').then(res=>res.json())
-        //.then(data=>{
-        //    console.log(data);
-            /*let newEvents = defualtEvents;
-            data.forEach(event => {
-                newEvents.push(event);
-            });
-            console.log(newEvents);
-            setEvents(newEvents)*/
 
-        //});
     },[])
 
     const handleDayClick = (e) =>{
         //SKAPA popup där användare matar in telefonnr, email fulla namn
         //Lagra i databasen som reserverad admin senare godkänner när betalning kommer in
-        const event = {
-            id: 20, // You must use a custom id generator
-            title: 'Reserverat!',
-            start: e.startStr,
-            end: e.endStr,
-            color: 'orange',
-            allDay: false,
-            description: 'Lecture'
-          }
-        setEvents(oldEvents=>[...oldEvents, event]);
+        setEventData(e);
+        setpVisable(true);
 
     }
     return (
         <div className="calendar-wrapper">
-            <Popup visable={pVisable} />
+            <Popup visable={pVisable} setpVisable={setpVisable} eventData={eventData} setEvents={setEvents}/>
             <FullCalendar
                 plugins={[timeGridPlugin, DayGridPlugin, interactionPlugin]}
                 initialView="timeGridWeek"
@@ -69,6 +53,7 @@ export default function Calendar(){
                 weekNumbers={true}
                 editable={false}
                 selectOverlap={false}
+                handleWindowResize={true}
             />
         </div>
     )
