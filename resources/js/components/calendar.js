@@ -13,12 +13,22 @@ export default function Calendar(){
     const [events, setEvents] = useState([]);
     const [pVisable, setpVisable] = useState(false);
     const [eventData, setEventData] = useState();
-
+    const today = new Date().toISOString().slice(0,10);
 
 
     useEffect(()=>{
         //hämtar alla data vid första inladdning av sidan
-
+        axios({
+            method: 'get',
+            url: '/api/getEvents',
+        }).then(function(response){
+            if(response.data == null){
+                alert("Error försök igen");
+            }else{
+                console.log(response);
+                //setEvents(oldEvents=>[...oldEvents, event]);
+            }
+        });
     },[])
 
     const handleDayClick = (e) =>{
@@ -29,6 +39,7 @@ export default function Calendar(){
 
     }
     return (
+
         <div className="calendar-wrapper">
             <Popup visable={pVisable} setpVisable={setpVisable} eventData={eventData} setEvents={setEvents}/>
             <FullCalendar
@@ -54,6 +65,10 @@ export default function Calendar(){
                 editable={false}
                 selectOverlap={false}
                 handleWindowResize={true}
+                validRange={{
+                    'start':today
+                }}
+
             />
         </div>
     )

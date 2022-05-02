@@ -16,3 +16,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/getEvents', [eventsController::class, 'getEvents']);
+
+Route::post('/upload/event', [eventsController::class, 'uploadEvents']);
