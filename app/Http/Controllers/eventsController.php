@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Events;
 use Illuminate\Support\Facades\Request;
-
+use Illuminate\Support\Facades\Session;
 
 class eventsController extends Controller
 {
@@ -21,5 +21,26 @@ class eventsController extends Controller
         }else{
             return "error";
         }
+    }
+    public function update(){
+        if(!Session::get('isAdmin')){
+            return 401;
+        }
+        $data =  Request::all();
+        switch ($data['changeTo']) {
+            case 'remove':
+                return Events::deleteOne($data['id']);
+                break;
+            case 'reserve':
+                return Events::reserveExisting($data['id']);
+                break;
+            case 'booked':
+                return Events::bookExisting($data['id']);
+                break;
+            default:
+                # code...
+                break;
+        }
+        return $data;
     }
 }

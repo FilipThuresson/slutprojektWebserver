@@ -20,6 +20,9 @@ Route::get('/getEvents', [eventsController::class, 'getEvents']);
 
 Route::post('/upload/event', [eventsController::class, 'uploadEvents']);
 
+Route::post('/update/event', [eventsController::class, 'update']);
+
+
 Route::post('/login', [AdminController::class, 'login']);
 
 
