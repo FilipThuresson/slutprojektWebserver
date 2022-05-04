@@ -17,12 +17,14 @@ export default function Popup({visable, setpVisable, eventData, setEvents}) {
     }
     const handleSubmit = (e) =>{
         e.preventDefault()
-        if(e.target.saveInfo.value){
+        if(e.target.saveInfo.checked){
             localStorage.setItem('resInfo', JSON.stringify({
                 name: e.target.fullName.value,
                 email: e.target.email.value,
                 phoneNr: e.target.phoneNr.value,
             }));
+        }else{
+            localStorage.removeItem('resInfo');
         }
         const event = {
             id: uuidv4(),
@@ -30,7 +32,6 @@ export default function Popup({visable, setpVisable, eventData, setEvents}) {
             start: eventData.startStr,
             end: eventData.endStr,
             color: 'orange',
-            allDay: false,
             email: e.target.email.value,
             phoneNr: e.target.phoneNr.value,
             name: e.target.fullName.value
@@ -57,6 +58,8 @@ export default function Popup({visable, setpVisable, eventData, setEvents}) {
                     <form onSubmit={handleSubmit}>
                         <button type="button" onClick={handleClose}>X</button>
                         <h2>Boka Tid</h2>
+                        <p>Datum: {eventData.startStr.split("T")[0]} Till {eventData.endStr.split("T")[0]}</p>
+                        <p>Klockan: {eventData.startStr.split("T")[1].split("+")[0]} Till {eventData.endStr.split("T")[1].split("+")[0]}</p>
                         {resInfo ? <input type='text' placeholder='Namn' name='fullName' defaultValue={resInfo.name} required/> : <input type='text' placeholder='Namn' name='fullName' required/>}
                         <br/>
                         {resInfo ? <input type='text' placeholder="Telefon" name='phoneNr' defaultValue={resInfo.phoneNr} required/> : <input type='text' placeholder="Telefon" name='phoneNr' required/>}
@@ -64,7 +67,7 @@ export default function Popup({visable, setpVisable, eventData, setEvents}) {
                         {resInfo ? <input type='Email' placeholder='Email' name='email' defaultValue={resInfo.email} required   /> : <input type='Email' placeholder='Email' name='email' required   />}
                         <br />
                         <div>
-                            <p><input name="saveInfo" type="checkbox"/>Spara information i webbläsaren</p>
+                            <p>{resInfo ? <input name="saveInfo" type="checkbox" defaultChecked/> : <input name="saveInfo" type="checkbox"/>}Spara information i webbläsaren</p>
                         </div>
                         <button type='submit'>Reservera</button>
                     </form>

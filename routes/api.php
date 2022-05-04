@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\eventsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -18,3 +19,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/getEvents', [eventsController::class, 'getEvents']);
 
 Route::post('/upload/event', [eventsController::class, 'uploadEvents']);
+
+Route::post('/login', [AdminController::class, 'login']);
+
+

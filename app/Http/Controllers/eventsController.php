@@ -16,7 +16,10 @@ class eventsController extends Controller
     public function uploadEvents(){
         $data = Request::all();
 
-        Events::addEvent($data);
-        return $data;
+        if(Events::addEvent($data)){
+            return $data;
+        }else{
+            return "error";
+        }
     }
 }

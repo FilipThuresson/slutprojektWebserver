@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\ViewController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Session;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,9 +15,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
+Route::get('/', [ViewController::class, 'index']);
+
+Route::get('/bookings', [ViewController::class, 'bookings']);
+
+Route::get('/admin', [ViewController::class, 'admin']);
+
+Route::get('/logout', function(){
+    Session::flush();
+    return redirect('/');
 });
-Route::get('/bookings', function () {
-    return view('bookings');
-});
+
+

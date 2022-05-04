@@ -25,8 +25,9 @@ export default function Calendar(){
             if(response.data == null){
                 alert("Error försök igen");
             }else{
-                console.log(response);
-                //setEvents(oldEvents=>[...oldEvents, event]);
+                response.data.forEach(event=>{
+                    setEvents(oldEvents=>[...oldEvents, event]);
+                });
             }
         });
     },[])
@@ -68,7 +69,6 @@ export default function Calendar(){
                 validRange={{
                     'start':today
                 }}
-
             />
         </div>
     )

@@ -7,8 +7,7 @@ export default function Nav() {
             <a href='/'><h2>Sunnanå Bastu</h2></a>
             <ul>
                 <a href='/bookings'><li>Boka Tider</li></a>
-                <li>Test</li>
-                <li>Test</li>
+                <a href='/admin'><li>Admin interface</li></a>
             </ul>
         </div>
 
