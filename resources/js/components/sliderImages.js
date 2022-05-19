@@ -8,3 +8,5 @@ export default [
         'url' : '/img/slider/2.jpg'
     }
 ];
+
+//URL samt id för varje bild i slidern

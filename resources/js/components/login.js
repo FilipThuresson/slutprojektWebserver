@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import Nav from './nav';
 import LoginForm from './loginForm';
 
+//Viewn för login page skapad av react
 
 export default function Login() {
     return (<>
@@ -12,6 +13,6 @@ export default function Login() {
 }
 
 if (document.getElementById('login')) {
-    ReactDOM.render(<Login />, document.getElementById('login'));
+    ReactDOM.render(<Login />, document.getElementById('login')); //Ifall en divtagg med id login finns rendera den här komponenten
 }
 

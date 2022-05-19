@@ -16,13 +16,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/getEvents', [eventsController::class, 'getEvents']);
-
-Route::post('/upload/event', [eventsController::class, 'uploadEvents']);
-
-Route::post('/update/event', [eventsController::class, 'update']);
+Route::get('/getEvents', [eventsController::class, 'getEvents']); //kör functionen getEvents i eventsController
 
 
-Route::post('/login', [AdminController::class, 'login']);
+Route::post('/upload/event', [eventsController::class, 'uploadEvents']); // ------||------
 
+Route::post('/update/event', [eventsController::class, 'update']); // ------||------
+
+
+Route::post('/login', [AdminController::class, 'login']); // ------||------
+
+Route::post('/register', [AdminController::class, 'register']); // ------||------
 

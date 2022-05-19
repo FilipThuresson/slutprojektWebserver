@@ -8,12 +8,12 @@ use Illuminate\Support\Facades\Session;
 
 class eventsController extends Controller
 {
-    public function getEvents(){
+    public function getEvents(){ //Hämtar alla events och retunerar det
         $events = Events::getAll();
         return $events;
     }
 
-    public function uploadEvents(){
+    public function uploadEvents(){ //Uppladdar ett event
         $data = Request::all();
 
         if(Events::addEvent($data)){
@@ -22,7 +22,7 @@ class eventsController extends Controller
             return "error";
         }
     }
-    public function update(){
+    public function update(){ //Uppdaterar ett event om man är admin
         if(!Session::get('isAdmin')){
             return 401;
         }
@@ -36,9 +36,6 @@ class eventsController extends Controller
                 break;
             case 'booked':
                 return Events::bookExisting($data['id']);
-                break;
-            default:
-                # code...
                 break;
         }
         return $data;

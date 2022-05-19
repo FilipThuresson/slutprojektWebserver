@@ -1,8 +1,7 @@
 import React from 'react';
 
 export default function Nav() {
-    return (
-
+    return ( //Simpel navbar
         <div className='nav-bar'>
             <a href='/'><h2>Sunnanå Bastu</h2></a>
             <ul>

@@ -35,3 +35,24 @@ body{
 a{
     color: var(--p-color);
 }
+
+.adminNewUsr{
+    color: #f1f3f5;
+    text-align: center;
+    padding: 20px;
+    margin: 10px ;
+}
+.adminNewUsr input{
+    padding: 7px;
+    font: 1rem;
+    border-radius: 7px;
+    border: none;
+}
+
+.adminNewUsr button{
+    padding: 7px;
+    font: 1rem;
+    border-radius: 7px;
+    border: none;
+    margin-top: 10px;
+}

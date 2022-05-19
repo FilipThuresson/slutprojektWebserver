@@ -1,7 +1,7 @@
 import React from 'react';
 
 export default function LoginForm() {
-    return (
+    return ( //Vanligt inlognings form
         <div className='loginWrapper'>
             <form method='post' action='/api/login'>
                 <h2>Logga in</h2>

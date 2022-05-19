@@ -1,33 +1,34 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState, useEffect} from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
-export default function Popup({visable, setpVisable, eventData, setEvents}) {
+export default function Popup({visable, setpVisable, eventData, setEvents}) { //Visar ett popup fönster
 
     const [show, setShow] = useState(visable);
 
     const resInfo = JSON.parse(localStorage.getItem('resInfo'));
 
     useEffect(()=>{
-        setShow(visable);
+        setShow(visable); //sätter variable show till vad visable är vid varje ändring av visable variabel
     }, [visable])
 
-    const handleClose = () =>{
+    const handleClose = () =>{ //Stänger ner popup fönstret
         setShow(false);
         setpVisable(false);
+
     }
-    const handleSubmit = (e) =>{
-        e.preventDefault()
-        if(e.target.saveInfo.checked){
+    const handleSubmit = (e) =>{ //Submitar form data med ajax
+        e.preventDefault() //Förhindrar från att köra form requesten och gå till en annan sida.
+        if(e.target.saveInfo.checked){ //Ifall man har valt att spara information i webläsaren sparas det i localstorage
             localStorage.setItem('resInfo', JSON.stringify({
                 name: e.target.fullName.value,
                 email: e.target.email.value,
                 phoneNr: e.target.phoneNr.value,
             }));
         }else{
-            localStorage.removeItem('resInfo');
+            localStorage.removeItem('resInfo'); //Tar annars bort all information i localstorage
         }
-        const event = {
-            id: uuidv4(),
+        const event = { //Skapar eventet men informationen från det man har selectat
+            id: uuidv4(), //Skapar en unik id med 4 olika strängar ihopsatta med bindsträck
             title: 'Reserverat!',
             start: eventData.startStr,
             end: eventData.endStr,
@@ -37,7 +38,7 @@ export default function Popup({visable, setpVisable, eventData, setEvents}) {
             name: e.target.fullName.value
         }
 
-        axios({
+        axios({ //Skickar eventet till api för uppladdning till data basen
             method: 'post',
             url: '/api/upload/event',
             data: event
@@ -45,13 +46,13 @@ export default function Popup({visable, setpVisable, eventData, setEvents}) {
             if(response.data == null){
                 alert("Error försök igen");
             }else{
-                setEvents(oldEvents=>[...oldEvents, event]);
+                setEvents(oldEvents=>[...oldEvents, event]);  //Ifall lagringen av eventet i databasen fungerade läggs eventet till i Events variabel
             }
         });
-        setShow(false);
+        setShow(false); //gör popuppen osynlig
         setpVisable(false);
     }
-    if(show){
+    if(show){ //Ifall show är true visa popupen
         return (
             <div className='popUpWrapper'>
                 <div className='popupDiv'>

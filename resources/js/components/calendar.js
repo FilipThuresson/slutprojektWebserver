@@ -35,19 +35,28 @@ export default function Calendar(){
     const handleDayClick = (e) =>{
         //SKAPA popup där användare matar in telefonnr, email fulla namn
         //Lagra i databasen som reserverad admin senare godkänner när betalning kommer in
-        setEventData(e);
-        setpVisable(true);
 
+        const diffInMs = Math.abs(e.end - e.start);
+        let diff =  diffInMs / (1000 * 60 * 60);
+        // Kolla om man har valt minst 2 timmar!
+        if(diff < 2){
+            alert('Du måste välja minst 2 timmar!');
+        }else{
+            setEventData(e);
+            setpVisable(true);
+        }
     }
+
     return (
 
         <div className="calendar-wrapper">
-            <Popup visable={pVisable} setpVisable={setpVisable} eventData={eventData} setEvents={setEvents}/>
+            <Popup visable={pVisable} setpVisable={setpVisable} eventData={eventData} setEvents={setEvents}/> {/*Visning av popup fönster*/}
+            {/* Calendar ramverket och alla inställningar */}
             <FullCalendar
                 plugins={[timeGridPlugin, DayGridPlugin, interactionPlugin]}
                 initialView="timeGridWeek"
                 aspectRatio={1}
-                slotDuration={'02:00:00'}
+                slotDuration={'01:00:00'}
                 firstDay={1}
                 locale={svLocale}
                 height="75vh"

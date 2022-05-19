@@ -1,8 +1,8 @@
 import axios from 'axios';
 import React, {useState, useEffect, useRef} from 'react';
 
-export default function AdminPopup({reloadEvents, visable, setpVisable, eventInfo}) {
-
+export default function AdminPopup({reloadEvents, reload, visable, setpVisable, eventInfo}) { //En popup för att ändra olika bokningar till reserverad, bokad och betal eller ta bort den
+    //Fungerar som andra popupen men olika innehål
     const [show, setShow] = useState(visable);
 
     useEffect(()=>{
@@ -15,6 +15,7 @@ export default function AdminPopup({reloadEvents, visable, setpVisable, eventInf
         setpVisable(false);
     }
     const handleSubmit = (e) =>{
+        //Vid submit hämtar det man vill uppdatera den till och skickar det till servern
         e.preventDefault();
 
         let update = {
@@ -30,7 +31,7 @@ export default function AdminPopup({reloadEvents, visable, setpVisable, eventInf
             if(!response.data){
                 alert("Något gick fel");
             }else{
-                reloadEvents(2);
+                reloadEvents(reload + 1);
                 setShow(false);
                 setpVisable(false);
             }

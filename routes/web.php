@@ -15,13 +15,14 @@ use Illuminate\Support\Facades\Session;
 |
 */
 
-Route::get('/', [ViewController::class, 'index']);
+Route::get('/', [ViewController::class, 'index']); //kör functionen index i Viewcontroller
 
-Route::get('/bookings', [ViewController::class, 'bookings']);
+Route::get('/bookings', [ViewController::class, 'bookings']); //kör functionen bookings i Viewcontroller
 
-Route::get('/admin', [ViewController::class, 'admin']);
+Route::get('/admin', [ViewController::class, 'admin']); //kör functionen admin i Viewcontroller
 
-Route::get('/logout', function(){
+
+Route::get('/logout', function(){ //tar bort session infon samt rederectar tillbaka till startsidan
     Session::flush();
     return redirect('/');
 });

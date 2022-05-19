@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Session;
 
 class ViewController extends Controller
 {
+
+    //Retunerar olika views för varje url
     public function index()
     {
         return view('home');

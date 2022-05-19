@@ -16870,7 +16870,7 @@ function ImageSlider() {
     if (!paused) {
       setTimeout(function () {
         nextImage();
-      }, 5000);
+      }, 2000);
     }
   }, [current]);
 
@@ -16945,6 +16945,75 @@ function ImageSlider() {
 
 /***/ }),
 
+/***/ "./resources/js/components/addUserAdmin.js":
+/*!*************************************************!*\
+  !*** ./resources/js/components/addUserAdmin.js ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ AddUserAdmin)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+
+function AddUserAdmin() {
+  var handleSubmit = function handleSubmit(e) {
+    e.preventDefault();
+    var data = {
+      username: e.target.usrName.value,
+      password: e.target.psw.value
+    };
+    axios({
+      method: 'post',
+      url: '/api/register',
+      data: data
+    }).then(function (response) {
+      console.log(response);
+
+      if (response.data) {
+        alert("Användare skapad!");
+      } else {
+        alert("Error försök igen");
+      }
+    });
+  };
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("form", {
+      className: "adminNewUsr",
+      onSubmit: handleSubmit,
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
+        children: "Skapa Ny Admin Anv\xE4ndare"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
+        children: "Anv\xE4ndar namn"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+        name: "usrName",
+        required: true,
+        placeholder: "Anv\xE4ndarnamn"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
+        children: "L\xF6senord"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+        name: "psw",
+        required: true,
+        placeholder: "L\xF6senord",
+        type: "password"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
+        type: "submit",
+        children: "Spara"
+      })]
+    })
+  });
+}
+
+/***/ }),
+
 /***/ "./resources/js/components/admin.js":
 /*!******************************************!*\
   !*** ./resources/js/components/admin.js ***!
@@ -16961,7 +17030,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var _nav__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./nav */ "./resources/js/components/nav.js");
 /* harmony import */ var _adminCalendar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./adminCalendar */ "./resources/js/components/adminCalendar.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _addUserAdmin__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./addUserAdmin */ "./resources/js/components/addUserAdmin.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
 
 
 
@@ -16970,13 +17041,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function Admin() {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_nav__WEBPACK_IMPORTED_MODULE_2__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_adminCalendar__WEBPACK_IMPORTED_MODULE_3__["default"], {})]
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_nav__WEBPACK_IMPORTED_MODULE_2__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_adminCalendar__WEBPACK_IMPORTED_MODULE_3__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_addUserAdmin__WEBPACK_IMPORTED_MODULE_4__["default"], {})]
   });
 }
 
 if (document.getElementById('admin')) {
-  react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(Admin, {}), document.getElementById('admin'));
+  react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(Admin, {}), document.getElementById('admin'));
 }
 
 /***/ }),
@@ -17087,8 +17158,15 @@ function AdminCalendar() {
   var handleDayClick = function handleDayClick(e) {
     //SKAPA popup där användare matar in telefonnr, email fulla namn
     //Lagra i databasen som reserverad admin senare godkänner när betalning kommer in
-    setEventData(e);
-    setpVisable(true);
+    var diffInMs = Math.abs(e.end - e.start);
+    var diff = diffInMs / (1000 * 60 * 60); // Kolla om man har valt minst 2 timmar!
+
+    if (diff < 2) {
+      alert('Du måste välja minst 2 timmar!');
+    } else {
+      setEventData(e);
+      setpVisable(true);
+    }
   };
 
   var handleEventClick = function handleEventClick(e) {
@@ -17108,6 +17186,7 @@ function AdminCalendar() {
         setEvents: setEvents
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_adminPopup__WEBPACK_IMPORTED_MODULE_7__["default"], {
         reloadEvents: setReload,
+        reload: reload,
         visable: ApVisable,
         setpVisable: setApVisable,
         eventInfo: eventInfo
@@ -17115,7 +17194,7 @@ function AdminCalendar() {
         plugins: [_fullcalendar_timegrid__WEBPACK_IMPORTED_MODULE_2__["default"], _fullcalendar_daygrid__WEBPACK_IMPORTED_MODULE_3__["default"], _fullcalendar_interaction__WEBPACK_IMPORTED_MODULE_5__["default"]],
         initialView: "timeGridWeek",
         aspectRatio: 1,
-        slotDuration: '02:00:00',
+        slotDuration: '01:00:00',
         firstDay: 1,
         locale: _fullcalendar_core_locales_sv__WEBPACK_IMPORTED_MODULE_4__["default"],
         height: "75vh",
@@ -17179,6 +17258,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 function AdminPopup(_ref) {
   var reloadEvents = _ref.reloadEvents,
+      reload = _ref.reload,
       visable = _ref.visable,
       setpVisable = _ref.setpVisable,
       eventInfo = _ref.eventInfo;
@@ -17212,7 +17292,7 @@ function AdminPopup(_ref) {
       if (!response.data) {
         alert("Något gick fel");
       } else {
-        reloadEvents(2);
+        reloadEvents(reload + 1);
         setShow(false);
         setpVisable(false);
       }
@@ -17383,8 +17463,15 @@ function Calendar() {
   var handleDayClick = function handleDayClick(e) {
     //SKAPA popup där användare matar in telefonnr, email fulla namn
     //Lagra i databasen som reserverad admin senare godkänner när betalning kommer in
-    setEventData(e);
-    setpVisable(true);
+    var diffInMs = Math.abs(e.end - e.start);
+    var diff = diffInMs / (1000 * 60 * 60); // Kolla om man har valt minst 2 timmar!
+
+    if (diff < 2) {
+      alert('Du måste välja minst 2 timmar!');
+    } else {
+      setEventData(e);
+      setpVisable(true);
+    }
   };
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
@@ -17398,7 +17485,7 @@ function Calendar() {
       plugins: [_fullcalendar_timegrid__WEBPACK_IMPORTED_MODULE_2__["default"], _fullcalendar_daygrid__WEBPACK_IMPORTED_MODULE_3__["default"], _fullcalendar_interaction__WEBPACK_IMPORTED_MODULE_5__["default"]],
       initialView: "timeGridWeek",
       aspectRatio: 1,
-      slotDuration: '02:00:00',
+      slotDuration: '01:00:00',
       firstDay: 1,
       locale: _fullcalendar_core_locales_sv__WEBPACK_IMPORTED_MODULE_4__["default"],
       height: "75vh",
