@@ -16853,47 +16853,63 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 function ImageSlider() {
   var imageSliderDiv = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
-  var imageOne = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+  var imageOne = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null); //Skapar referenser till JSX taggar (HTML fast För javascript/React), ungeför som getElementById();
+
   var imageTwo = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
 
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1),
       _useState2 = _slicedToArray(_useState, 2),
       current = _useState2[0],
-      setCurrent = _useState2[1];
+      setCurrent = _useState2[1]; //Om vilken bild där är på.
+
 
   var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
       _useState4 = _slicedToArray(_useState3, 2),
       paused = _useState4[0],
-      setPaused = _useState4[1];
+      setPaused = _useState4[1]; //om automatiska image slidningen är på eller inte
+
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     if (!paused) {
       setTimeout(function () {
-        nextImage();
+        nextImage(); //Vid förändring av current och ifall automatiska slidningen är på vänta 2sekunder och sen kör setImage
+        //Eftersom nextImage() kommer ändra current kommer funktionen köras om till den är pausad
       }, 2000);
     }
   }, [current]);
 
   var nextImage = function nextImage() {
+    //Funktionen för att ändra bild
     if (current >= _sliderImages__WEBPACK_IMPORTED_MODULE_1__["default"].length) {
-      setCurrent(1);
-      imageSliderDiv.current.style.left = "0%";
+      //Ifall vi är på sista bilden kör detta
+      setCurrent(1); //ändra till första bilden
+
+      imageSliderDiv.current.style.left = "0%"; //Ändra css för att visa första bilden
+      //hämta knapparna för att visa vilken bild man är på
+
       var button = imageOne.current;
-      var otherButton = imageTwo.current;
+      var otherButton = imageTwo.current; //Samt ändra vilken som är aktiv
+
       button.className = 'image-indicator-div active';
       otherButton.className = 'image-indicator-div';
     } else {
+      //Om man inte är på sista bilden kör detta
       setCurrent(current + 1);
       console.log(current);
-      imageSliderDiv.current.style.left = current * -100 + "%";
+      imageSliderDiv.current.style.left = current * -100 + "%"; //Ändra css för att visa nästa bilden
+      //hämta knapparna för att visa vilken bild man är på
+
       var _button = imageTwo.current;
-      var _otherButton = imageOne.current;
+      var _otherButton = imageOne.current; //Samt ändra vilken som är aktiv
+
       _button.className = 'image-indicator-div active';
       _otherButton.className = 'image-indicator-div';
     }
   };
 
   function setImage(image) {
+    //Om man själv klickar på knapparna för att ändra bild körs denna
+    //koden är liknade över men hårdkodad för just 2 bilder,
     imageSliderDiv.current.style.left = image * -100 + "%";
     setPaused(true);
 
@@ -16964,6 +16980,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function AddUserAdmin() {
+  //Funktion för att skapa ny admin användare av för existerad admin!
   var handleSubmit = function handleSubmit(e) {
     e.preventDefault();
     var data = {
@@ -17036,6 +17053,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+ //Viewn för admin sidan ifall man är inloggad
 
 
 
@@ -17105,6 +17123,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 function AdminCalendar() {
+  //Samma som vanliga calender bara med admin popupen samt visas bara om man är inloggad som admin
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
       _useState2 = _slicedToArray(_useState, 2),
       events = _useState2[0],
@@ -17263,6 +17282,8 @@ function AdminPopup(_ref) {
       setpVisable = _ref.setpVisable,
       eventInfo = _ref.eventInfo;
 
+  //En popup för att ändra olika bokningar till reserverad, bokad och betal eller ta bort den
+  //Fungerar som andra popupen men olika innehål
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(visable),
       _useState2 = _slicedToArray(_useState, 2),
       show = _useState2[0],
@@ -17279,6 +17300,7 @@ function AdminPopup(_ref) {
   };
 
   var handleSubmit = function handleSubmit(e) {
+    //Vid submit hämtar det man vill uppdatera den till och skickar det till servern
     e.preventDefault();
     var update = {
       id: eventInfo.publicId,
@@ -17360,6 +17382,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+ //Viewn för calender man alla bokningar
 
 
 
@@ -17371,7 +17394,7 @@ function Bookings() {
 }
 
 if (document.getElementById('bookings')) {
-  react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(Bookings, {}), document.getElementById('bookings'));
+  react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(Bookings, {}), document.getElementById('bookings')); //Körs om bookings diven finns i html
 }
 
 /***/ }),
@@ -17431,15 +17454,20 @@ function Calendar() {
       events = _useState2[0],
       setEvents = _useState2[1];
 
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
       _useState4 = _slicedToArray(_useState3, 2),
-      pVisable = _useState4[0],
-      setpVisable = _useState4[1];
+      cost = _useState4[0],
+      setCost = _useState4[1];
 
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(),
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
       _useState6 = _slicedToArray(_useState5, 2),
-      eventData = _useState6[0],
-      setEventData = _useState6[1];
+      pVisable = _useState6[0],
+      setpVisable = _useState6[1];
+
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(),
+      _useState8 = _slicedToArray(_useState7, 2),
+      eventData = _useState8[0],
+      setEventData = _useState8[1];
 
   var today = new Date().toISOString().slice(0, 10);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
@@ -17469,6 +17497,7 @@ function Calendar() {
     if (diff < 2) {
       alert('Du måste välja minst 2 timmar!');
     } else {
+      setCost(100 * diff);
       setEventData(e);
       setpVisable(true);
     }
@@ -17477,11 +17506,12 @@ function Calendar() {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
     className: "calendar-wrapper",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_popup__WEBPACK_IMPORTED_MODULE_6__["default"], {
+      cost: cost,
       visable: pVisable,
       setpVisable: setpVisable,
       eventData: eventData,
       setEvents: setEvents
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_fullcalendar_react__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    }), " ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_fullcalendar_react__WEBPACK_IMPORTED_MODULE_1__["default"], {
       plugins: [_fullcalendar_timegrid__WEBPACK_IMPORTED_MODULE_2__["default"], _fullcalendar_daygrid__WEBPACK_IMPORTED_MODULE_3__["default"], _fullcalendar_interaction__WEBPACK_IMPORTED_MODULE_5__["default"]],
       initialView: "timeGridWeek",
       aspectRatio: 1,
@@ -17506,7 +17536,8 @@ function Calendar() {
       handleWindowResize: true,
       validRange: {
         'start': today
-      }
+      },
+      allDaySlot: false
     })]
   });
 }
@@ -17533,6 +17564,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+ //Viewn för homepage skapad av react
 
 
 
@@ -17544,7 +17576,7 @@ function Home() {
 }
 
 if (document.getElementById('home')) {
-  react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(Home, {}), document.getElementById('home'));
+  react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(Home, {}), document.getElementById('home')); //Körs om diven home finns i htmlkoden
 }
 
 /***/ }),
@@ -17569,6 +17601,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+ //Viewn för login page skapad av react
 
 
 
@@ -17580,7 +17613,7 @@ function Login() {
 }
 
 if (document.getElementById('login')) {
-  react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(Login, {}), document.getElementById('login'));
+  react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(Login, {}), document.getElementById('login')); //Ifall en divtagg med id login finns rendera den här komponenten
 }
 
 /***/ }),
@@ -17603,31 +17636,35 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function LoginForm() {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-    className: "loginWrapper",
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("form", {
-      method: "post",
-      action: "/api/login",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h2", {
-        children: "Logga in"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
-        children: "Admin Namn"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
-        type: "text",
-        name: "name",
-        required: true
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
-        children: "Admin L\xF6senord"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
-        type: "password",
-        name: "pwd",
-        required: true
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
-        type: "submit",
-        children: "Logga in"
-      })]
+  return (
+    /*#__PURE__*/
+    //Vanligt inlognings form
+    (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+      className: "loginWrapper",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("form", {
+        method: "post",
+        action: "/api/login",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h2", {
+          children: "Logga in"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
+          children: "Admin Namn"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+          type: "text",
+          name: "name",
+          required: true
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
+          children: "Admin L\xF6senord"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+          type: "password",
+          name: "pwd",
+          required: true
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
+          type: "submit",
+          children: "Logga in"
+        })]
+      })
     })
-  });
+  );
 }
 
 /***/ }),
@@ -17650,27 +17687,31 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function Nav() {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-    className: "nav-bar",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
-      href: "/",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h2", {
-        children: "Sunnan\xE5 Bastu"
-      })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("ul", {
+  return (
+    /*#__PURE__*/
+    //Simpel navbar
+    (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+      className: "nav-bar",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
-        href: "/bookings",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("li", {
-          children: "Boka Tider"
+        href: "/",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h2", {
+          children: "Sunnan\xE5 Bastu"
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
-        href: "/admin",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("li", {
-          children: "Admin interface"
-        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("ul", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
+          href: "/bookings",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("li", {
+            children: "Boka Tider"
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
+          href: "/admin",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("li", {
+            children: "Admin interface"
+          })
+        })]
       })]
-    })]
-  });
+    })
+  );
 }
 
 /***/ }),
@@ -17715,11 +17756,13 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 function Popup(_ref) {
-  var visable = _ref.visable,
+  var cost = _ref.cost,
+      visable = _ref.visable,
       setpVisable = _ref.setpVisable,
       eventData = _ref.eventData,
       setEvents = _ref.setEvents;
 
+  //Visar ett popup fönster
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(visable),
       _useState2 = _slicedToArray(_useState, 2),
       show = _useState2[0],
@@ -17727,29 +17770,34 @@ function Popup(_ref) {
 
   var resInfo = JSON.parse(localStorage.getItem('resInfo'));
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    setShow(visable);
+    setShow(visable); //sätter variable show till vad visable är vid varje ändring av visable variabel
   }, [visable]);
 
   var handleClose = function handleClose() {
+    //Stänger ner popup fönstret
     setShow(false);
     setpVisable(false);
   };
 
   var handleSubmit = function handleSubmit(e) {
-    e.preventDefault();
+    //Submitar form data med ajax
+    e.preventDefault(); //Förhindrar från att köra form requesten och gå till en annan sida.
 
     if (e.target.saveInfo.checked) {
+      //Ifall man har valt att spara information i webläsaren sparas det i localstorage
       localStorage.setItem('resInfo', JSON.stringify({
         name: e.target.fullName.value,
         email: e.target.email.value,
         phoneNr: e.target.phoneNr.value
       }));
     } else {
-      localStorage.removeItem('resInfo');
+      localStorage.removeItem('resInfo'); //Tar annars bort all information i localstorage
     }
 
     var event = {
+      //Skapar eventet men informationen från det man har selectat
       id: (0,uuid__WEBPACK_IMPORTED_MODULE_2__["default"])(),
+      //Skapar en unik id med 4 olika strängar ihopsatta med bindsträck
       title: 'Reserverat!',
       start: eventData.startStr,
       end: eventData.endStr,
@@ -17759,6 +17807,7 @@ function Popup(_ref) {
       name: e.target.fullName.value
     };
     axios({
+      //Skickar eventet till api för uppladdning till data basen
       method: 'post',
       url: '/api/upload/event',
       data: event
@@ -17768,14 +17817,16 @@ function Popup(_ref) {
       } else {
         setEvents(function (oldEvents) {
           return [].concat(_toConsumableArray(oldEvents), [event]);
-        });
+        }); //Ifall lagringen av eventet i databasen fungerade läggs eventet till i Events variabel
       }
     });
-    setShow(false);
+    setShow(false); //gör popuppen osynlig
+
     setpVisable(false);
   };
 
   if (show) {
+    //Ifall show är true visa popupen
     return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
       className: "popUpWrapper",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
@@ -17836,6 +17887,8 @@ function Popup(_ref) {
                 type: "checkbox"
               }), "Spara information i webbl\xE4saren"]
             })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("p", {
+            children: ["Pris : ", cost, "kr (100kr/timme). ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("br", {}), "F\xF6r att f\xE5 bokningen bokad samt ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("br", {}), " kod till nyckelsk\xE5p swisha ", cost, " till:", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("br", {}), " 070-991 18 41 eller 070-280 35 83", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("br", {}), "I meddelandet skicka datum samt start tid till slut tid ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("br", {}), "t.ex \"2022-06-05 16:00-22:00\""]
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
             type: "submit",
             children: "Reservera"
@@ -17867,7 +17920,7 @@ __webpack_require__.r(__webpack_exports__);
 }, {
   'id': 1,
   'url': '/img/slider/2.jpg'
-}]);
+}]); //URL samt id för varje bild i slidern
 
 /***/ }),
 

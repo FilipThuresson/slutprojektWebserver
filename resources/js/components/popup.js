@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
-export default function Popup({visable, setpVisable, eventData, setEvents}) { //Visar ett popup fönster
+export default function Popup({cost, visable, setpVisable, eventData, setEvents}) { //Visar ett popup fönster
 
     const [show, setShow] = useState(visable);
 
@@ -70,6 +70,12 @@ export default function Popup({visable, setpVisable, eventData, setEvents}) { //
                         <div>
                             <p>{resInfo ? <input name="saveInfo" type="checkbox" defaultChecked/> : <input name="saveInfo" type="checkbox"/>}Spara information i webbläsaren</p>
                         </div>
+                        <p>
+                            Pris : {cost}kr (100kr/timme). <br />
+                            För att få bokningen bokad samt <br/> kod till nyckelskåp swisha {cost} till:<br/> 070-991 18 41 eller 070-280 35 83<br />
+                            I meddelandet skicka datum samt start tid till slut tid <br/>
+                            t.ex "2022-06-05 16:00-22:00"
+                        </p>
                         <button type='submit'>Reservera</button>
                     </form>
                 </div>

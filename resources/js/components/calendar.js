@@ -11,6 +11,8 @@ export default function Calendar(){
 
 
     const [events, setEvents] = useState([]);
+    const [cost, setCost] = useState(0);
+
     const [pVisable, setpVisable] = useState(false);
     const [eventData, setEventData] = useState();
     const today = new Date().toISOString().slice(0,10);
@@ -42,6 +44,7 @@ export default function Calendar(){
         if(diff < 2){
             alert('Du måste välja minst 2 timmar!');
         }else{
+            setCost(100*diff);
             setEventData(e);
             setpVisable(true);
         }
@@ -50,7 +53,7 @@ export default function Calendar(){
     return (
 
         <div className="calendar-wrapper">
-            <Popup visable={pVisable} setpVisable={setpVisable} eventData={eventData} setEvents={setEvents}/> {/*Visning av popup fönster*/}
+            <Popup cost={cost} visable={pVisable} setpVisable={setpVisable} eventData={eventData} setEvents={setEvents}/> {/*Visning av popup fönster*/}
             {/* Calendar ramverket och alla inställningar */}
             <FullCalendar
                 plugins={[timeGridPlugin, DayGridPlugin, interactionPlugin]}
@@ -78,6 +81,7 @@ export default function Calendar(){
                 validRange={{
                     'start':today
                 }}
+                allDaySlot={false}
             />
         </div>
     )
