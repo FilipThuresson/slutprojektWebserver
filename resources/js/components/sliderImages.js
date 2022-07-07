@@ -1,11 +1,11 @@
 export default [
     {
         'id' : 0,
-        'url' : '/img/slider/1.jpg'
+        'url' : '/img/slider/IMG_4346.jpeg'
     },
     {
         'id' : 1,
-        'url' : '/img/slider/2.jpg'
+        'url' : '/img/slider/IMG_5140.jpg'
     }
 ];
 

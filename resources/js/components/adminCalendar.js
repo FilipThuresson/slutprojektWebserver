@@ -88,10 +88,8 @@ export default function AdminCalendar(){ //Samma som vanliga calender bara med a
                 editable={false}
                 selectOverlap={false}
                 handleWindowResize={true}
-                validRange={{
-                    'start':today
-                }}
                 eventClick={handleEventClick}
+                longPressDelay={200}
             />
         </div>
         </>

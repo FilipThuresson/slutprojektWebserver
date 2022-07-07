@@ -6,7 +6,6 @@ import svLocale from '@fullcalendar/core/locales/sv';
 import interactionPlugin from '@fullcalendar/interaction';
 import Popup from './popup';
 
-
 export default function Calendar(){
 
 
@@ -82,6 +81,7 @@ export default function Calendar(){
                     'start':today
                 }}
                 allDaySlot={false}
+                longPressDelay={200}
             />
         </div>
     )

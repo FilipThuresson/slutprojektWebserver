@@ -44,7 +44,7 @@ export default function AdminPopup({reloadEvents, reload, visable, setpVisable, 
                     <form onSubmit={handleSubmit}>
                         <button type="button" onClick={handleClose}>X</button>
                         <br />
-                        <p>Uppdatera bokining för <br /> Namn: {eventInfo.extendedProps.name} <br />Telefon: {eventInfo.extendedProps.phoneNr} <br /></p>
+                        <p>Uppdatera bokning för <br /> Namn: {eventInfo.extendedProps.name} <br />Telefon: {eventInfo.extendedProps.phoneNr} <br /></p>
                         <label>Uppdatera Status</label>
                         <br />
                         <select name="select">
