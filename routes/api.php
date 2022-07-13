@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\eventsController;
+use App\Http\Controllers\ViewController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,6 +18,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/getEvents', [eventsController::class, 'getEvents']); //kör functionen getEvents i eventsController
+
+Route::get('/getInfoText',  [ViewController::class, 'getInfoText']);
+
+Route::post('/setInfoText',  [ViewController::class, 'setInfoText']);
 
 
 Route::post('/upload/event', [eventsController::class, 'uploadEvents']); // ------||------

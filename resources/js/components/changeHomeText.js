@@ -1,22 +1,49 @@
-import React, {useState} from 'react';
-import { Editor } from "react-draft-wysiwyg";
-import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import React, { useEffect, useState } from "react";
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 
 export default function ChangeHomeText() {
+    const [value, setValue] = useState('');
+    const [update, setUpdate] = useState(1);
 
-    const [editorState, setEditorState] = useState();
+    useEffect(()=>{
+        //hämtar alla data vid första inladdning av sidan
+        axios({
+            method: 'get',
+            url: '/api/getInfoText',
+        }).then(function(response){
+            if(!response.data){
+                alert("Error försök igen");
+            }else{
+                console.log(response.data);
+                setValue(response.data[0].text );
+            }
+        });
+    },[update]);
 
-    const onEditorStateChange = (stateChange) => {
-        setEditorState(stateChange);
+    const homeTextChange = () => {
+        axios({
+            method: 'post',
+            url: '/api/setInfoText',
+            data: {
+                'text' : value
+            }
+        }).then(function(response){
+            if(response.data == null){
+                alert("Error försök igen");
+            }else{
+                setUpdate(update + 1);
+                alert("Uppdaterat!");
+            }
+        });
     }
 
-    return (<>
-        <Editor
-            editorState={editorState}
-            toolbarClassName="toolbarClassName"
-            wrapperClassName="wrapperClassName"
-            editorClassName="editorClassName"
-            onEditorStateChange={onEditorStateChange}
-        />
-    </>);
+  return (
+    <>
+        <div className="wrapperClassName">
+            <ReactQuill theme="snow" value={value} onChange={setValue}/>
+        </div>
+        <button onClick={homeTextChange}>Spara</button>
+    </>
+  );
 }
